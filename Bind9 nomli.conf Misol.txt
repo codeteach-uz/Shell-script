@@ -1,0 +1,46 @@
+#!/bin/bash 
+# barcha domen nomlarini kichik harfga aylantirish 
+DOMAINLAR = " $( echo  $@ | tr '[AZ]'  '[az]' ) "
+
+# NameDCONF 
+= " /var/named/chroot/etc/named.conf" ga yo'l
+
+
+# NameDCHEKCONF = "/usr/sbin/named-checkconf -t /var/named/chroot/" xatosi uchun named.conf-ni tekshiring.
+
+# Foydalanishni ko?rsating va agar 
+[ $# -eq 0 ] bo?lsa  , “Foydalanish: $0 domen1 domen2 ...” aks-sadosi bo?lsa , 1 fidan chiqish  
+
+         
+         
+
+
+
+# mayli, $DOMAINS ichida d uchun buyruq qatori args sifatida # 
+o?tkazilgan barcha domen nomlarini qayta ishlash uchun for loopdan foydalaning, agar domen alrady chiqsa # bajaring, 
+        grep $d $NAMEDCONF >/dev/null,
+         agar [ $? -eq 0 ] keyin echo " $d $NAMEDCONF ichida chiqadi , o?tkazib yuboradi ..." davom eting # o?tkazib yuboring fi 
+
+	 	    
+        
+                 
+                 
+        
+        
+        # else domenni named.conf ga qo'shing 
+        echo "  $d domeni $NAMEDCONFga qo'shilmoqda ..."
+
+		
+        echo  "zone \" ${ d } \" {" >> $NAMEDCONF 
+        echo  "master turi;"   >> $NAMEDCONF 
+        echo  " fayl \"/etc/named/master. ${ d } \";"   >> $NAMEDCONF 
+        echo  " ruxsat berish-o'tkazish { to'ldiruvchi serverlar; };"   >> $NAMEDCONF 
+        echo  "};"   >> $NAMEDCONF
+
+        # 
+        $NAMEDCHEKCONF >/dev/null,
+         agar  [  $? -ne 0  ]    # xato topildimi? 
+        keyin  
+        	echo  "**** Ogohlantirish: named-checkconf - Xatolar tufayli $d nomini qayta yuklab bo‘lmadi ****" 
+        aks holda 
+        	echo "****  $d domeni $NAMEDCONF **** ga muvaffaqiyatli qo‘shildi ****" fi bajarildi  

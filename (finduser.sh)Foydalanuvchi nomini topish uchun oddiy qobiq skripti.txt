@@ -1,0 +1,38 @@
+
+A simple shell script to locate username (finduser.sh)
+
+
+#!/bin/bash
+# set var 
+PASSWD_FILE=/etc/passwd
+
+# get user name
+read -p "Enter a user name : " username
+
+# try to locate username in in /etc/passwd
+grep "^$username" $PASSWD_FILE > /dev/null
+
+# store exit status of grep
+# if found grep will return 0 exit stauts
+# if not found, grep will return a nonzero exit stauts
+status=$?
+
+if test $status -eq 0
+then
+	echo "User '$username' found in $PASSWD_FILE file."
+else
+	echo "User '$username' not found in $PASSWD_FILE file."
+fi
+
+
+Save and close the file. Run it as follows:
+
+
+chmod +x finduser.sh
+./finduser.sh
+Sample Outputs:
+
+
+Enter a user name : vivek
+User 'vivek' found in /etc/passwd file.
+Run it again:

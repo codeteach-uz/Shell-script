@@ -1,0 +1,40 @@
+#!/bin/bash
+# run tar command and dump data to tape
+tar -cvf /dev/st0 /www /home 2>/dev/null
+
+# Okay find out if tar was a success or a failure 
+[ $? -eq 0 ] && status="Success!" || status="Failed!!!"
+
+# write an email to admin 
+mail -s 'Backup status' vivek@nixcraft.co.in<<END_OF_EMAIL
+
+The backup job finished.
+
+End date: $(date)
+Hostname : $(hostname)
+Status : $status
+
+END_OF_EMAIL
+
+
+
+
+
+
+
+1111111111111111
+
+chmod +x tapebackup1.sh
+./tapebackup1.sh
+Sample outputs:
+
+Subject: Test
+From: root <root@www-03.nixcraft.net.in>
+Date: 12:57 Am
+To: vivek@nixcraft.co.in
+
+The backup job finished.
+
+End date: Thu Sep 17 14:27:35 CDT 2009
+Hostname : txvip1.simplyguide.org
+Status : Success

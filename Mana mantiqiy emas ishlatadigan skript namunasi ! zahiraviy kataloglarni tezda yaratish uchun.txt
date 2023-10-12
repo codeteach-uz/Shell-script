@@ -1,0 +1,82 @@
+#!/bin/bash
+# A sample shell script to backup MySQL database
+
+# Get todays date
+NOW=$(date +"%d-%m-%Y")
+
+# Location to store mysql backup
+BAK="/nas10/.mysql-database"
+
+# MySQL Server Login Information
+MUSER="root"			#### mysql user name ###
+MPASS="YOUR-PASSWORD-HERE"	#### mysql password  ###
+MHOST="127.0.0.1"		#### mysql host name ###
+
+# Full path to common utilities
+MYSQL="/usr/bin/mysql"
+MYSQLDUMP="/usr/bin/mysqldump"
+GZIP="/bin/gzip"
+
+# If backup directory does not exits create it using logical not
+if [ ! -d "$BAK" ]
+then
+  mkdir -p "$BAK"
+fi
+
+# Get all mysql databases names
+DBS="$($MYSQL -u $MUSER -h $MHOST -p$MPASS -Bse 'show databases')"
+
+# Start backup
+echo -n "Dumping..."
+
+# Use the for loop
+for db in $DBS
+do
+ FILE="$BAK/mysql-$db.$NOW-$(date +"%T").gz"
+  $MYSQLDUMP -u $MUSER -h $MHOST -p$MPASS $db | $GZIP -9 > $FILE
+ echo -n "."
+done
+echo -n  "...Done"
+echo ""
+
+
+
+
+
+
+
+
+$$$$$$$$$$$$$$$$$
+
+
+
+
+#!/bin/bash 
+# MySQL ma'lumotlar bazasini zaxiralash uchun shell skriptining namunasi # Bugungi sanani 
+
+HOZIR oling 
+= $( sana + "%d-%m-%Y" ) # MySQL zaxira nusxasini saqlash uchun joy BAK = "/nas10/.mysql -ma'lumotlar bazasi" # MySQL Serverga kirish ma'lumotlari MUSER = "root" #### mysql foydalanuvchi nomi ### MPASS = "SIZNING-PAROL-SHU YERDA" #### mysql paroli ### MHOST = "127.0.0.1" #### mysql xost nomi ### # Umumiy yordamchi dasturlarga to'liq yo'l MYSQL = "/usr/bin/mysql" MYSQLDUMP = "/usr/bin/mysqldump" GZIP
+
+= "/bin/gzip" 
+
+# Agar zaxira katalogi chiqmasa, uni mantiqiy emas, 
+agar  [  ! -d " $BAK "  ] 
+keyin 
+  mkdir -p " $BAK " 
+fi 
+
+# Barcha MySQL ma'lumotlar bazalari nomlarini oling 
+DBS = " $( $MYSQL -u $MUSER -h $MHOST -p $MPASS -Bse 'ma'lumotlar bazalarini ko'rsatish' ) " 
+
+# Zaxira nusxasini ishga tushirish 
+echo -n "Dumping...
+
+
+ 
+
+ " $BAK /mysql- $db . $HOZIR - $( sana + "%T" ) .gz" 
+  $MYSQLDUMP -u $MUSER -h $MHOST -p $MPASS  $db  |  $GZIP -9 > $FILE 
+ echo -n "." 
+bajarildi 
+echo -n   "...Bajarildi" 
+echo  ""
