@@ -127,3 +127,61 @@ get_request_methods
 get_request_pages
 get_request_pages_all
 get_request_pages_404
+
+
+
+####Top 10 Request IP's:
+====================
+13 1.2.3.4
+8 1.2.3.5
+8 1.2.3.6
+4 1.2.3.7
+4 1.2.3.8
+2 1.2.3.9
+2 1.2.3.10
+2 1.2.3.11
+2 1.2.3.12
+2 1.2.3.13
+
+Top Request Methods:
+====================
+106 GET
+1 HEAD
+
+Top 10: 404 Page Responses:
+===========================
+146 /content/images/201x/0x/image-1.png
+45 /
+38 /wp-login.php/
+36 /apple-touch-icon.png/
+11 http://1.2.3.4:80/sql/websql/
+11 http://1.2.3.4:80/sql/webdb/
+11 http://1.2.3.4:80/sql/webadmin/
+11 http://1.2.3.4:80/sql/sqlweb/
+11 http://1.2.3.4:80/sql/sqladmin/
+11 http://1.2.3.4:80/sql/sql-admin/
+
+Top 10 Request Pages:
+=====================
+23 /traefik-a-modern-http-reverse-proxy-and-load-balancer-for-microservices-such-as-docker/
+13 /
+10 /traefik-a-modern-http-reverse-proxy-and-load-balancer-for-microservices-such-as-docker/amp/
+6 /structured-search-queries-with-elasticsearch/
+5 /interfacing-amazon-dynamodb-with-python-using-boto3/
+4 /aws-java-sdk-detect-if-s3-object-exists-using-doesobjectexist/
+2 /spark-pyspark-examples/
+2 /how-to-setup-mongodb-server-on-ubuntu-and-enable-authentication/
+2 /getting-started-with-aws-elasticsearch-service/
+2 /aws-elasticsearch-register-s3-repository-for-snapshots-using-the-cli/
+
+Top 10 Request Pages from All Logs:
+===================================
+654 /
+505 /traefik-a-modern-http-reverse-proxy-and-load-balancer-for-microservices-such-as-docker/
+361 /interfacing-amazon-dynamodb-with-python-using-boto3/
+274 /running-java-web-applications-on-docker-with-payara-micro/
+228 /aws-java-sdk-detect-if-s3-object-exists-using-doesobjectexist/
+165 /setup-a-distributed-storage-volume-with-glusterfs/
+128 /how-to-ingest-nginx-access-logs-to-elasticsearch-using-filebeat-and-logstash/
+121 /aws-access-kibana-5-behind-elb-via-nginx-reverse-proxy-on-custom-dns/
+112 /secure-access-to-kibana-on-aws-elasticsearch-service/
