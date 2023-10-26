@@ -1,0 +1,54 @@
+#!/bin/bash
+
+rm /home/james/logs/*
+
+log_files=/home/james/logs/
+
+# Copy log files to temporary directory
+
+cp /var/log/nginx/access*.gz $log_files
+
+for f in $log_files/*;
+do
+	gunzip -d "$f"
+done
+
+# Manually copy plain-text access files
+
+cp /var/log/nginx/access.log $log_files
+cp /var/log/nginx/access.log.1 $log_files
+
+page_view_counter=`cat $log_files* | wc -l`
+feed_counter=`cat $log_files* | grep "feed.xml" | wc -l`
+
+# Show top five performing pages
+
+echo "Top Five Pages"
+
+awk '$7 !~ "/assets/*|robots.txt|favicon.ico|400|/2020/*|wp-*|vendor" {print $7}' $log_files/* | \
+sort | \
+uniq -c | \
+sort -r | \
+head -n 5
+
+echo
+echo "Top Five Posts"
+
+awk '$7 ~ "/2020/*" {print $7}' $log_files/* | \
+sort | \
+uniq -c | \
+sort -r | \
+head -n 5
+
+echo
+echo "Status Codes"
+
+awk '{print $9}' $log_files/* | \
+sort | \
+uniq -c | \
+sort -r | \
+head -n 5
+
+echo
+echo "Total Pageviews: $page_view_counter"
+echo "Total Feed Hits: $feed_counter"
