@@ -2,18 +2,26 @@
 
 # variables
 LOGFILE="/var/log/nginx/access.log"
+# LOGFILE= access.log tenglab oldik 
 LOGFILE_GZ="/var/log/nginx/access.log.*"
 RESPONSE_CODE="200"
+# javob qaytarishi = 200  tenglab oldi HTTP  200 ok degani 
 
 # functions
 filters(){
 grep $RESPONSE_CODE \
 | grep -v "\/rss\/" \
+# RSS agregatori  - yangiliklar sarlavhalari, bloglar , podkastlar va videoxosting saytlari kabi RSS yoki Atom formatlariga eksport qiluvchi manbalardan xabarlarni avtomatik ravishda yig'ish uchun mijoz dasturi yoki veb-ilovasi .
 | grep -v robots.txt \
+#  IP manzillarining umumiy file 
 | grep -v "\.css" \
-| grep -v "\.jss*" \
-| grep -v "\.png" \
+# derektoriyDAGI FILElarni qidirish  uchun 
+  | grep -v "\.jss*" \
+# qandaydir boglanuvchimi   API LAR 
+  | grep -v "\.png" \
+# YOQOTISHSIZ QISISH  ALGARITIMI GZIP MII 
 | grep -v "\.ico"
+# FARMATI SIZE SORAYAPTI 
 }
 
 filters_404(){
@@ -22,6 +30,7 @@ grep "404"
 
 request_ips(){
 awk '{print $1}'
+# AWK - matnni qayta ishlash uchun mo'ljallangan va odatda ma'lumotlarni olish va hisobot berish vositasi sifatida ishlatiladigan talqin qilingan dasturlash tili. AWK asosan Unix tizimlarida qo'llaniladi
 }
 
 request_method(){
@@ -35,7 +44,8 @@ awk '{print $7}'
 
 wordcount(){
 sort \
-| uniq -c
+| uniq -c 
+# GURUXLAR  SORTLAYAPTI 
 }
 
 sort_desc(){
